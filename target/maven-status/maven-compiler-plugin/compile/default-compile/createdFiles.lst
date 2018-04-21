@@ -1,0 +1,8 @@
+com\mytway\mytwaywebserviceapplication\utility\database\dao\UserTableDAO.class
+com\mytway\mytwaywebserviceapplication\webservices\JsonWebservice.class
+com\mytway\mytwaywebserviceapplication\pojo\UserTable.class
+com\mytway\mytwaywebserviceapplication\utility\database\dao\Database.class
+com\mytway\mytwaywebserviceapplication\utility\model\UserTableModel.class
+com\mytway\mytwaywebserviceapplication\webservices\InsertUserToDatabaseWebService.class
+com\mytway\mytwaywebserviceapplication\utility\ClientSide.class
+com\mytway\mytwaywebserviceapplication\utility\database\dao\QUERY_PARAMS.class

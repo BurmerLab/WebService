@@ -1,0 +1,14 @@
+{
+    "userId" : "1",
+    "userName" : "michalek",
+    "email" : "bubu@bubu.pl",
+    "password" : "wwww",
+    "typeWork" : "1",
+    "lengthTimeWork" : "8",
+    "startStandardTimeWork" : "7",
+    "workPlaceLatitude" : "2.23232",
+    "workPlaceLongitude" : "4.23232",
+    "homePlaceLatitude" : "1.23232",
+    "homePlaceLongitude" : "3.2323232",
+    "workWeek" : "100101010"
+}
