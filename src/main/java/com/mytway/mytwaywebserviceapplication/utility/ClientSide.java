@@ -46,8 +46,8 @@ public class ClientSide {
 
             // Step2: Now pass JSON File Data to REST Service
             try {
-                URL url = new URL("http://localhost:8084/MytwayWebServiceApplication/rest/database/updateUser");
-//                URL url = new URL("http://localhost:8084/MytwayWebServiceApplication/rest/database/insertUser");
+//                URL url = new URL("http://localhost:8084/MytwayWebServiceApplication/rest/database/updateUser");
+                URL url = new URL("http://localhost:8084/MytwayWebServiceApplication/rest/database/insertUser");
 //                URL url = new URL("http://michalburmz5.nazwa.pl/MytwayWebServiceApplication/rest/database/insertUser");
 //                URL url = new URL("http://michalburmz5.nazwa.pl/MytwayWebServiceApplication/rest/database/checkUserName");
 //                URL url = new URL("http://localhost:8084/MytwayWebServiceApplication/rest/database/checkUserName");

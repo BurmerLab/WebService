@@ -63,7 +63,7 @@ private final static Logger logger = Logger. getLogger(UserTableDAO.class);
         return isUserNameExist;
     }  
     
-       public UserTable getUserFromExternalDatabase(Connection connection, String userName, String userPassword) throws Exception{
+    public UserTable getUserFromExternalDatabase(Connection connection, String userName, String userPassword) throws Exception{
 
         logger.info("Started checking username in Database");
         UserTable userTable = new UserTable();
@@ -93,6 +93,26 @@ private final static Logger logger = Logger. getLogger(UserTableDAO.class);
         }
         
         return userTable;
+    }  
+    
+    public int getUserIdFromExternalDatabase(Connection connection, String userName, String userPassword) throws Exception{
+        logger.info("Started checking username in Database");
+        int userId = 0;
+        try{
+            PreparedStatement ps = connection.prepareStatement(QUERY_PARAMS.GET_USER_ID_FROM_DATA_BASE);
+            ps.setString(1, userName);
+            ps.setString(2, userPassword);
+            
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                userId = rs.getInt("id");
+            }
+        }catch(Exception e){
+            logger.error("Error: ", e);
+            throw e;
+        }
+        
+        return userId;
     }  
 	
         public boolean isUserNameAndPasswordIsCorrectInExternalDatabase(Connection connection, String userName, String userPassword) throws Exception{

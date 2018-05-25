@@ -27,13 +27,13 @@ public class JsonWebservice {
     @POST
     @Path("/insertUser")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response insertUserToDatabase(InputStream incomingData) throws Exception {
+    public String insertUserToDatabase(InputStream incomingData) throws Exception {
         
         logger.info("Started webservice: insertUserToDatabase from url /database/insertUser");
         StringBuilder jsonFromRequestBuilder = new StringBuilder();
         ObjectMapper mapper = new ObjectMapper();
         UserTableModel userTableModel = new UserTableModel();
-        
+        int userIdAddedInExternalDB = 0;
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
             String line = null;
@@ -53,11 +53,20 @@ public class JsonWebservice {
             logger.info("Ended parsing json to UserTable object");
             userTableModel.insertUserTableDataFromRequestToDatabase(userTable);
             logger.info("Inserting user to DB seems correct");
+            
+            userIdAddedInExternalDB = userTableModel.getUserIdFromDatabase(userTable.getUserName(), userTable.getPassword());
+            logger.info("Added user " + userTable.getUserName() +
+                    ", email: " + userTable.getEmail() +
+                    " with id = " + userIdAddedInExternalDB + ", to extarnal database");
         } catch (IOException e) {
             logger.error("Error with saving user to database: ", e);
         }
         logger.info("Ended webservice: insertUserToDatabase from url /database/insertUser");
-        return Response.status(200).entity(jsonFromRequestBuilder.toString()).build();
+        
+        JSONObject json=new JSONObject();
+        json.put("userIdAddedInExternalDB" , userIdAddedInExternalDB);
+
+        return json.toString();
     }
     
     @POST
@@ -143,7 +152,6 @@ public class JsonWebservice {
             logger.error("Error with saving user to database: ", e);
         }
         logger.info("Ended webservice: checkUserName from url /database/insertUser");
-//        return Response.status(200).entity(jsonFromRequestBuilder.toString()).build();
 
         JSONObject json=new JSONObject();
         json.put("isUserNameExistInTable" , isUserNameExist);
@@ -188,8 +196,7 @@ public class JsonWebservice {
             logger.error("Wrror with checkin user name and password", e);
         }
         logger.info("Ended webservice: checkUserAndPassword from url /database/checkUserAndPassword");
-//        return Response.status(200).entity(jsonFromRequestBuilder.toString()).build();
-
+        
         JSONObject json=new JSONObject();
         json.put("isUserNameAndPasswordCorrect" , isUserNameAndPasswordIsCorrect);
 

@@ -27,6 +27,7 @@ public final static String IS_USER_NAME_EXIST_IN_DATA_BASE = "SELECT * FROM t_us
 
 public final static String IS_USER_NAME_AND_PASSWORD_IS_CORRECT_IN_DATA_BASE = "SELECT * FROM t_user_repository WHERE user_name = ? AND password = ?";
 public final static String GET_USER_FROM_DATA_BASE = "SELECT * FROM t_user_repository WHERE user_name = ? AND password = ?";
+public final static String GET_USER_ID_FROM_DATA_BASE = "SELECT id FROM t_user_repository WHERE user_name = ? AND password = ?";
 
 
 

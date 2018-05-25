@@ -91,7 +91,23 @@ public class UserTableModel {
         
         return userTable;
     }
+    
+    public int getUserIdFromDatabase(String userName, String userPassword) throws Exception{
+        int userId = 0;
+        try {
+            Database database = new Database();
+            Connection connection = database.GetConnection();
+            
+            UserTableDAO userTableDAO = new UserTableDAO();
+            userId = userTableDAO.getUserIdFromExternalDatabase(connection, userName, userPassword);
+        } catch (Exception e) {
+            logger.error("Error with getting user id from external database : ", e);
+            throw e;
+        }
         
+        return userId;
+    }
+    
     public void selectUserTableDataFromRequestToDatabase(UserTable userTable) throws Exception{
         try {
             Database database = new Database();
